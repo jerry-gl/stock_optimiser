@@ -1,5 +1,14 @@
-# Stock optimiser
+# Stock portfolio optimiser
 This Python calculator is designed to provide comprehensive analysis and performance optimisation of investment portfolios.
+
+[US portfolio demo](https://vimeo.com/935799076?share=copy)
+
+[Australian portfolio demo](https://vimeo.com/935828746?share=copy)
+
+![cumulative returns](/graphical_examples/cumulative_returns.png)
+![sharpe ratios](/graphical_examples/sharpe_ratio.png)
+![value at risk](/graphical_examples/var.png)
+
 
 ## Overview
 The program is structured into the following five parts:
