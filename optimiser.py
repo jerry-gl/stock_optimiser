@@ -8,6 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 from typing import Tuple
+import sys
 
 
 def main():
@@ -102,7 +103,7 @@ def main():
     )
 
     user_input = input("Would you like to output the graphs? (yes/otherwise): ")
-    if user_input.lower() == "yes" or "y":
+    if user_input.lower() == "yes" or user_input.lower() == "y":
         FileOutput.csv(f"{port_name}_price.csv", stock_price)
         FileOutput.csv(f"{port_name}_return.csv", daily_return)
         FileOutput.pdf(
@@ -133,6 +134,8 @@ def main():
                 benchmark_vol,
             ),
         )
+    else:
+        sys.exit()
 
 
 # The values of "benchmark", "rf_rate_ticker", "rf_rate", "region", and "regex" can be adjusted based on user requirements.
