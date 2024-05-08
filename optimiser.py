@@ -90,7 +90,7 @@ def main():
 
     # Optimisation outputs
     print(f"\n[OPTIMISED] Metrics")
-    print(f"{display_opt_weight}")
+    print((display_opt_weight).round(5))
     print(
         f"Minimum weight on each stock: {min_weight}\nMaximum weight on each stock: {max_weight}\n"
     )
@@ -350,9 +350,18 @@ class Analysis:
 
     @classmethod
     def key_assignment_weight(cls, portfolio: list):
-        total_sum = sum(stock["amount"] for stock in portfolio)
+        total_sum = 0
+        
+        for stock in portfolio:
+            ticker_symbol = stock["ticker"]
+            stock_data = yf.Ticker(ticker_symbol)
+            recent_price = stock_data.history(period="1d")["Close"].iloc[0]
+            stock["price"] = recent_price
+            total_sum += stock["amount"] * recent_price
+        
         portfolio = sorted(portfolio, key=lambda x: x["ticker"])
-        weights = [stock["amount"] / total_sum for stock in portfolio]
+        weights = [stock["amount"] * stock["price"] / total_sum for stock in portfolio]
+        
         for i, stock in enumerate(portfolio):
             stock["weight"] = weights[i]
 
